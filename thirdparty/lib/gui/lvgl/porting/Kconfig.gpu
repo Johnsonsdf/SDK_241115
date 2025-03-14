@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: Apache-2.0
+
+menu "GPU"
+
+config LV_USE_GPU_ACTS
+	bool "Use Actions GPU"
+	depends on ACTIONS_FRAMEWORK_DISPLAY
+
+if LV_USE_GPU_ACTS
+
+config LV_USE_GPU_ACTS_DMA2D
+	bool "Use Actions DMA2D GPU"
+	depends on DMA2D_HAL
+	default y
+	help
+	  Must enable DMA2D on Actions platform.
+
+config LV_GPU_ACTS_DMA2D_SIZE_LIMIT
+	int "Minimum area (in pixels) for DMA2D processing."
+	depends on LV_USE_GPU_ACTS_DMA2D
+	default 32
+
+config LV_USE_GPU_ACTS_VG_LITE
+	bool "Use Actions VG-Lite GPU"
+	depends on VG_LITE
+	default y
+	help
+	  Must enable Verisilicon VG-Lite on Actions platform.
+
+config LV_GPU_ACTS_VG_LITE_SIZE_LIMIT
+	int "Minimum area (in pixels) for VG-Lite processing."
+	depends on LV_USE_GPU_ACTS_VG_LITE
+	default 32
+
+config LV_GPU_ACTS_VG_LITE_COMMAND_BUFFER_SIZE
+	int "Command buffer size in kilobytes for VG-Lite processing."
+	depends on LV_USE_GPU_ACTS_VG_LITE
+	default 32
+
+config LV_USE_GPU_ACTS_JPG
+	bool "Use Actions JPG Hardware Decoder"
+	depends on JPEG_HAL
+	help
+	  Must enable JPEG Hardware Decoder Actions platform.
+
+config LV_USE_GPU_ACTS_SW_DECODER
+	bool "Use Actions Software Decoder"
+	depends on ACTIONS_FRAMEWORK_DISPLAY
+	help
+	  Must enable Software Decoder Actions platform.
+
+endif # LV_USE_GPU_ACTS
+
+endmenu

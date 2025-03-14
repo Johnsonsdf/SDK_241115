@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig LVGL
+	bool "Light and Versatile Graphics Library"
+	help
+	  This option enables the LVGL GUI library.
+
+if LVGL
+
+config APP_LINK_WITH_LVGL
+	bool "Link 'app' with LVGL"
+	default y
+	help
+	  Add LVGL header files to the 'app' include path. It may be
+	  disabled if the include paths for LVGL are causing aliasing
+	  issues for 'app'.
+
+config LV_Z_USE_FILESYSTEM
+	bool "Enable file system"
+	depends on FILE_SYSTEM
+	default y
+	help
+	  Enable LVGL file system
+
+config LV_CONF_SKIP
+	default n
+
+config LV_MEM_CUSTOM
+	default y
+
+config LV_MEMCPY_MEMSET_STD
+	default y
+
+config LV_TICK_CUSTOM
+	default y
+
+config LV_USE_LOG
+	default y
+
+config LV_SPRINTF_CUSTOM
+	default y
+
+config LV_ATTRIBUTE_MEM_ALIGN_SIZE
+	default 4
+
+config LV_USE_LARGE_COORD
+	default y
+
+choice LV_FONT_DEFAULT
+	default LV_FONT_DEFAULT_UNSCII_8
+endchoice
+
+choice LV_TXT_ENC
+	default LV_TXT_ENC_UTF8
+endchoice
+
+config LV_USE_THEME_DEFAULT
+	default n
+
+config LV_USE_THEME_BASIC
+	default n
+
+config LV_USE_THEME_MONO
+	default n
+
+config LV_BUILD_EXAMPLES
+	default n
+
+rsource "../Kconfig"
+rsource "Kconfig.gpu"
+rsource "Kconfig.memory"
+
+endif #LVGL

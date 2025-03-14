@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: Apache-2.0
+
+if LVGL
+
+config LVGL_USE_RES_MANAGER
+	bool "Enable resource attributes conversion"
+	default y
+	depends on RES_MANAGER
+	help
+	  Enable resource atributes conversion
+
+config LVGL_RES_PRELOAD_PRIORITY
+	int "Res Preload Thread Prioriy"
+	default 5
+	depends on LVGL_USE_RES_MANAGER
+	help
+	This option set res preload thread priority
+
+config LVGL_RES_PRELOAD_STACKSIZE
+	int "Res Preload Thread Stack Size"
+	default 1536
+	depends on LVGL_USE_RES_MANAGER
+	help
+	This option set stack size for res preload thread
+
+config LVGL_USE_BITMAP_FONT
+	bool "Enable bitmap fonts"
+	default y
+	depends on BITMAP_FONT
+	help
+	  Enable bitmap font support
+
+config LVGL_USE_FREETYPE_FONT
+	bool "Enable freetype fonts"
+	default y
+	depends on FREETYPE_FONT
+	help
+	  Enable freetype font support
+
+config LVGL_USE_IMG_DECODER_ACTS
+	bool "Enable Actions image decoder"
+	help
+	  Enable Actions image decoder
+
+config LVGL_USE_IMG_DECODER_ACTS_RES
+	bool "Enable Actions image res decoder"
+	help
+	  Enable Actions image res decoder
+
+config LVGL_DECODE_CACHE_BUF_SIZE
+	int "Maximum size of picture decoding(bytes)"
+	default 25600
+	depends on LVGL_USE_IMG_DECODER_ACTS
+	help
+	  This option specifies the Maximum size of picture decoding(bytes).
+
+config LVGL_DISPLAY_FLUSH_WORKQ_STACKSIZE
+	int "Stack Size of Workq for Display Delayed Flushing"
+	default 1024
+	depends on UI_SERVICE
+	help
+	  This option set stack size of workq used for LVGL display delayed flushing.
+	  Set 0 to disable delayed flush for small VDB where hardware rendering is
+	  fast enough.
+
+endif # LVGL

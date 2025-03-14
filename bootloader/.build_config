@@ -1,0 +1,5 @@
+# Build config
+BOARD=ats3085s_watch_bootnand
+APPLICATION=recovery
+SUB_APP=
+APP_CONF=
